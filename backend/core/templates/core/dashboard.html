@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Author: Kelvin Anane Gyambiby">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="icon" href="{% static 'core/img/logo2.jpg' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'core/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'core/responsive_dashboard.css' %}">
+<title>Best Brain College | Dashboard </title>
+</head>
+
+<body>
+    <header class="topbar">
+    <!-- I will put the logo of the school here -->
+        <div class="hero">
+                <img src="{% static 'core/img/logo2.jpg' %}" alt="Logo">
+                <p>Best Brain College</p>
+            </div>
+
+    <!-- I will come back later on this -->
+        {% if notifications %}
+           <div class="notification-area">
+
+             {% for note in notifications %}
+               <div class="notification-card">
+                {{ note }}
+                  </div>
+         {% endfor %}
+
+           </div>
+{% endif %}
+        
+
+ <!--Hamburger navigation  -->
+             <div class="hamburger active">
+                     ☰
+                 </div>
+
+        <div class="user-info active">
+            Welcome Mr. {{ student.first_name }}
+            <a href="/logout/" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <ul>
+                <li><a href="/dashboard/"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="/courses/"><i class="fa-solid fa-book"></i>
+                        Course Registration</a></li>
+                <li><a href="/my-courses/"><i class="fa-solid fa-clipboard-list"></i>
+                        My Courses</a></li>
+                <li><a href="/results/"><i class="fa-solid fa-chart-column"></i> Results</a></li>
+                <li><a href="/profile/"><i class="fa-solid fa-user"></i> My Account</a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard-main">
+            <button class="back-btn"><a href="{% url 'login' %}"><i class="fa-solid fa-arrow-left"></i></a></button>
+
+            <section class="welcome-card">
+                <h2>Student Dashboard</h2>
+                <p>Student ID: {{ student.student_id }}</p>
+                <p>Level: {{ student.level }}</p>
+            </section>
+
+            {% if notifications %}
+            <div class="notification-area">
+
+                {% for note in notifications %}
+                <div class="notification-card">
+                    {{ note }}
+                </div>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h3>{{ total_courses }}</h3>
+                    <p>Registered Courses</p>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>{{ total_credits }}</h3>
+                    <p>Total Credits</p>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>{{ available_courses }}</h3>
+                    <p>Available Courses</p>
+                </div>
+
+            </section>
+
+            <section class="actions-grid">
+
+                <div class="action-card">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <h3>Register Courses</h3>
+                    <p>Register courses for this semester</p>
+                    <a href="/courses/">Open</a>
+                </div>
+
+                <div class="action-card">
+                    <i class="fa-solid fa-book"></i>
+                    <h3>My Courses</h3>
+                    <p>View registered courses</p>
+                    <a href="/my-courses/">Open</a>
+                </div>
+
+                <div class="action-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>Results</h3>
+                    <p>View your academic results</p>
+                    <a href="/results/">Open</a>
+                </div>
+
+                <div class="action-card">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <h3>Account Settings</h3>
+                    <p>Manage profile</p>
+                    <a href="/profile/">Open</a>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <div class="social-media icons">
+            <a href=""><i class="fa-solid fa-facebook"></i></a>
+            <a href=""><i class="fa-solid fa-instagram"></i></a>
+            <a href=""><i class="fa-solid fa-whatsApp"></i></a>
+        </div>
+
+        <p>&copy; {{ datetime }} Best Brain College</p>
+
+        <!-- Terms and Help -->
+        <div class="terms">
+            <ul>
+                <li><a href="">Privacy</a></li>
+                <li><a href="">Terms</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>{
+
+            const hamburger = document.querySelector(".hamburger");
+            const userInfo = document.querySelector(".user-info");
+            userInfo.classList.remove("active");
+
+           hamburger.addEventListener("click", () => {
+                   nav.classList.toggle("active");
+
+              });
+        });
+
+    </script>
+</body>
+
+</html>

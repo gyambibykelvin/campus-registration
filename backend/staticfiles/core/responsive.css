@@ -1,0 +1,55 @@
+@media (max-width: 800px){
+    .school-motto{
+        display: none;
+        padding: 100px;
+    }
+
+    body{
+        width: 100vw;
+        flex-wrap: wrap;
+    }
+
+    .school-display img{
+        width: 100%;
+    }
+
+    footer{
+        display: block;
+        text-align: center;
+    }
+
+    .terms ul{
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 20px 0;
+    }
+}
+
+@media (max-width: 600px){
+    body{
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .login-container form{
+        width: 300px;
+        font-size: 1rem;
+    }
+
+    header nav{
+        display: none;
+    }
+
+    .terms ul{
+        gap: 5px;
+    }
+
+     .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+}

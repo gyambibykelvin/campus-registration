@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Author: Kelvin Anane Gyambiby">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Best Brain College | Login</title>
+    <link rel="icon" href="{% static 'core/img/logo2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/responsive.css' %}">
+</head>
+<body>
+    <main>
+        <header>
+            <!-- School Logo -->
+            <div class="hero">
+                <img src="{% static 'core/img/logo2.jpg' %}" alt="Logo">
+                <p>Best Brain College</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links active">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Help</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </nav>
+
+           <!--Hamburger navigation  -->
+             <div class="hamburger">
+                     ☰
+                 </div>
+        </header>
+
+        <!-- School Banner -->
+        <div class="school-display">
+            <img src="{% static 'core/img/logo2.jpg' %}" alt="School banner" loading="lazy">
+        </div>
+
+        <!-- Error toast -->
+        {% if error %}
+           <div id="toast-error"> {{ error }} </div>
+      {% endif %}
+
+        <!-- Form -->
+ <div class="login-container">
+       <div class="login-form">
+            <form method="post">
+                {% csrf_token %}
+                        <h2>Login</h2>
+                         <label for="username" id="username">Username</label>
+                    <input type="text" placeholder="24245401499" required name="username" id="username">
+
+                    <label for="password" id="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+
+                    <button id="submit" type="submit">Login</button>
+                     <!-- alternative signup -->
+       <a href="{% url 'signup' %}" class="signup-link">Don't have an account? Signup</a>
+            </form>
+            
+        </div>
+
+         <!-- School motto -->
+        <div class="school-motto">
+            <p>Quality Education <br>is our priority</p>
+        </div>
+ </div>
+
+     
+      
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-media icons">
+            <a href=""><i class="fa-solid fa-facebook"></i></a>
+            <a href=""><i class="fa-solid fa-instagram"></i></a>
+            <a href=""><i class="fa-solid fa-whatsApp"></i></a>
+        </div>
+
+        <p>&copy; {{ datetime }} Best Brain College</p>
+
+        <!-- Terms and Help -->
+         <div class="terms">
+            <ul>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+         </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+
+            const hamburger = document.querySelector(".hamburger");
+            const nav = document.querySelector(".nav-links");
+
+             nav.classList.remove("active");
+
+           hamburger.addEventListener("click", () => {
+                   nav.classList.toggle("active");
+              });
+
+
+              //toast
+
+window.onload = function(){
+
+    const toast = document.getElementById("toast-error");
+
+    if(toast){
+        setTimeout(() => {
+            toast.style.top = "20px";
+        }, 100);
+
+        setTimeout(() => {
+            toast.style.top = "-80px";
+        }, 3500);
+    }
+
+}
+
+        });
+    </script>
+</body>
+</html>

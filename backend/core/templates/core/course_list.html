@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Author: Kelvin Anane Gyambiby">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'core/img/logo2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'core/courses_list.css' %}">
+    <link rel="stylesheet" href="{% static 'core/responsive.css' %}">
+    <title> Best Brain College | Courses Registration</title>
+</head>
+<body>
+
+    <header>
+            <!-- School Logo -->
+            <div class="hero">
+                <img src="{% static 'core/img/logo2.jpg' %}" alt="Logo">
+                <p>Best Brain College</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links active">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="">Help</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </nav>
+
+           <!--Hamburger navigation  -->
+             <div class="hamburger">
+                     ☰
+                 </div>
+        </header>
+
+<div class="notification-card"></div>
+
+    <h1>Course Registration</h1>
+ <button class="back-btn"><a href="{% url 'login' %}"><i class="fa-solid fa-arrow-left"></i></a></button>    
+
+<div class="course-list">
+<ul>
+{% for course in courses %}
+    <li>
+       <p>{{ course.course_code }} - {{ course.title }}</p>
+
+        {% if course.id in registered_courses %}
+            <span>Registered</span>
+        {% else %}
+            <form method="post" action="{% url 'register_course' %}">
+                {% csrf_token %}
+                <input type="hidden" name="course_id" value="{{ course.id }}">
+                <button class="register-btn" type="submit">Register</button>
+            </form>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-media icons">
+            <a href=""><i class="fa-solid fa-facebook"></i></a>
+            <a href=""><i class="fa-solid fa-instagram"></i></a>
+            <a href=""><i class="fa-solid fa-whatsApp"></i></a>
+        </div>
+
+        <p>&copy; {{ datetime }} Best Brain College</p>
+
+        <!-- Terms and Help -->
+         <div class="terms">
+            <ul>
+                <li><a href="">Privacy</a></li>
+                <li><a href="">Terms</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+         </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () =>{
+
+            const hamburger = document.querySelector(".hamburger");
+            const nav = document.querySelector(".nav-links");
+            nav.classList.remove("active");
+
+           hamburger.addEventListener("click", () => {
+                   nav.classList.toggle("active");
+              });
+
+            });
+        </script>
+</body>
+</html>
