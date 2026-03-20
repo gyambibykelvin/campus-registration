@@ -1,1 +1,1 @@
-web: gunicorn campus-registration.wsgi
+web: gunicorn backend.backend.wsgi:application
