@@ -51,8 +51,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-#d
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -133,11 +131,11 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
+""" STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
-]
+] """
 
-#d
+#before deploy
 import dj_database_url
 
 DATABASES = {
