@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(zm78u6r-b6shn1pajp*d*b_p3*_0zszb)3k$8$a-3ii2d3af-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://best-brain-college.onrender.com/']
 
 
 # Application definition
